@@ -4,8 +4,25 @@
   "description": "A complete authentication project",
   "main": "src/index.ts",
   "scripts": {
-    "start": "node src/index.ts"
+    "start": "nodemon src/index.ts",
+    "build": "tsc"
   },
   "author": "krishna",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.2",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^22.15.21",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.15.0",
+    "multer": "^2.0.0",
+    "winston": "^3.17.0",
+    "zod": "^3.25.23"
+  }
 }
