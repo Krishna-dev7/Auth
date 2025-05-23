@@ -1,0 +1,11 @@
+{
+  "name": "auth-project",
+  "version": "1.0.0",
+  "description": "A complete authentication project",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "node src/index.ts"
+  },
+  "author": "krishna",
+  "license": "ISC"
+}
