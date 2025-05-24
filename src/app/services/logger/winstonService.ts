@@ -24,8 +24,8 @@ class WinstonService implements ILogger {
     this.logger.info(message);
   }
 
-  error(message: string): void {
-    this.logger.error(message);
+  error(error:any): void {
+    this.logger.error(error.message || error);
   }
 
   warn(message: string): void {

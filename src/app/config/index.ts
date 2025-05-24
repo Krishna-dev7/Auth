@@ -1,7 +1,7 @@
 import env from "../../env";
 
-const config = {
+const appConfig = {
   PORT: env.PORT ?? 3000,
 }
 
-export default config;
+export default appConfig;

@@ -1,18 +1,31 @@
+import multer from "multer";
 import initServices from "../services";
-import ILogger from "../services/loggerService/ILogger";
+import ILogger from "../services/logger/ILogger";
+import { Application } from "express";
 
-class ServiceContainer {
+interface IServiceContainer {
+  logger: ILogger;
+  multer: multer.Multer;
+  server?: Application;
+}
 
-  public _multer;
-  public _logger: ILogger;
+class ServiceContainer implements IServiceContainer{
+
+  public multer: multer.Multer;
+  public logger: ILogger;
+  public server?: Application;
   private static services: Map<string, any>;
   private static instance: ServiceContainer;
 
 
   private constructor() {
-    initServices();
-    this._multer = ServiceContainer.getService("multer");
-    this._logger = ServiceContainer.getService("logger");
+    this.multer = multer({
+      storage: multer.memoryStorage(),
+      limits: {
+        fileSize: 10 * 1024 * 1024 // 10 MB
+      }
+    })
+    this.logger = ServiceContainer.getService("logger");
   }
 
   public static getInstance(): ServiceContainer {
@@ -42,12 +55,14 @@ class ServiceContainer {
       this.services.set(name, service);
       return true;
   }
-
 }
 
+async function createContainer() {
+  await initServices();
+  return ServiceContainer.getInstance();
+}
 
-const serviceContainer = ServiceContainer.getInstance();
-export default serviceContainer;
+export default createContainer;
 export {
   ServiceContainer
 }
